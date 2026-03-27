@@ -113,7 +113,7 @@
 
   .hero h1 {
     font-family: 'Lora', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 600;
     line-height: 1.1;
     color: var(--green-deep);
@@ -177,12 +177,22 @@
 
   .hero-deco {
     position: absolute;
-    right: -40px;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.06;
+    opacity: 0.2;
     pointer-events: none;
   }
+
+/* Right side (existing) */
+  .hero-deco.right {
+    right: -40px;
+  }
+
+/* Left side (new) */
+  .hero-deco.left {
+    left: -40px;
+    transform: translateY(-50%) scaleX(-1); /* mirror it */
+  } 
 
   /* ── SECTION SHARED ── */
   section { padding: 5rem 2rem; }
@@ -449,8 +459,34 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
 
-  <!-- Decorative DNA-ish SVG -->
-  <svg class="hero-deco" width="380" height="500" viewBox="0 0 380 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Decorative Right DNA-ish SVG -->
+  <svg class="hero-deco right" width="380" height="500" viewBox="0 0 380 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M190 0 C240 80 140 160 190 240 C240 320 140 400 190 500" stroke="#4a7c59" stroke-width="2" fill="none"/>
+    <path d="M190 0 C140 80 240 160 190 240 C140 320 240 400 190 500" stroke="#7db88a" stroke-width="2" fill="none"/>
+    <line x1="165" y1="60" x2="215" y2="60" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="145" y1="120" x2="235" y2="120" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="180" x2="225" y2="180" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="240" x2="225" y2="240" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="145" y1="300" x2="235" y2="300" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="165" y1="360" x2="215" y2="360" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="420" x2="225" y2="420" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="165" cy="60" r="4" fill="#4a7c59"/>
+    <circle cx="215" cy="60" r="4" fill="#7db88a"/>
+    <circle cx="145" cy="120" r="4" fill="#7db88a"/>
+    <circle cx="235" cy="120" r="4" fill="#4a7c59"/>
+    <circle cx="155" cy="180" r="4" fill="#4a7c59"/>
+    <circle cx="225" cy="180" r="4" fill="#7db88a"/>
+    <circle cx="155" cy="240" r="4" fill="#7db88a"/>
+    <circle cx="225" cy="240" r="4" fill="#4a7c59"/>
+    <circle cx="145" cy="300" r="4" fill="#4a7c59"/>
+    <circle cx="235" cy="300" r="4" fill="#7db88a"/>
+    <circle cx="165" cy="360" r="4" fill="#7db88a"/>
+    <circle cx="215" cy="360" r="4" fill="#4a7c59"/>
+    <circle cx="155" cy="420" r="4" fill="#4a7c59"/>
+    <circle cx="225" cy="420" r="4" fill="#7db88a"/>
+  </svg>
+  <!-- Decorative left DNA-ish SVG -->
+  <svg class="hero-deco left" width="380" height="500" viewBox="0 0 380 500" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M190 0 C240 80 140 160 190 240 C240 320 140 400 190 500" stroke="#4a7c59" stroke-width="2" fill="none"/>
     <path d="M190 0 C140 80 240 160 190 240 C140 320 240 400 190 500" stroke="#7db88a" stroke-width="2" fill="none"/>
     <line x1="165" y1="60" x2="215" y2="60" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
@@ -496,7 +532,7 @@
 <section id="about">
   <div class="section-inner">
     <p class="section-label">About</p>
-    <h2 class="section-title">From the backyard<br>to the <em>biotech lab</em></h2>
+    <h2 class="section-title">From <em>biotech</em> to <br><em>[something else here]</em></h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
@@ -577,16 +613,23 @@
 
       <div class="series-card card-tools">
         <span class="series-icon">🔬</span>
-        <h3>Biology Tools</h3>
+        <h3>Biology Tools/To the Lab</h3>
         <p>Western blot, PCR, flow cytometry, CRISPR, ddPCR — technique explainers that become permanent reference resources.</p>
-        <span class="series-badge">Evergreen</span>
+        <span class="series-badge">Lab Techniques</span>
       </div>
 
       <div class="series-card card-nature">
         <span class="series-icon">🌿</span>
-        <h3>Nature Figured It Out First</h3>
-        <p>Evolution invented everything before scientists did. CRISPR, PCR, GFP, antibiotic resistance — we borrowed all of it.</p>
-        <span class="series-badge">Flagship series</span>
+        <h3>Inspired By Nature</h3>
+        <p>Nature did the R&D. We just figured out how to use it. Exploring inventions and technology inspired by nature.</p>
+        <span class="series-badge">? series</span>
+      </div>
+
+      <div class="series-card card-nature">
+        <span class="series-icon">🧬</span>
+        <h3>The Code of Life</h3>
+        <p>Biology is written in a language every living thing understands. Let’s slow down and learn how to read it together.</p>
+        <span class="series-badge">Molecular Biology</span>
       </div>
 
     </div>
@@ -615,7 +658,7 @@
       <a href="https://www.tiktok.com/@crashingintoclarity321" class="platform-card">
         <span class="platform-icon">🎵</span>
         <strong>Side Quests TikTok</strong>
-        <span>Sandbox channel</span>
+        <span>@crashingintoclarity321</span>
       </a>
       <a href="#" class="platform-card">
         <span class="platform-icon">▶️</span>
@@ -623,9 +666,9 @@
         <span>Deep dives & papers</span>
       </a>
       <a href="https://substack.com/@crashingintoclarity321" class="platform-card">
-        <span class="platform-icon">🌀</span>
-        <strong>Crashing Into Clarity</strong>
-        <span>Substack</span>
+        <span class="platform-icon">📒</span>
+        <strong>Substack</strong>
+        <span>@crashingintoclarity321</span>
       </a>
     </div>
   </div>
