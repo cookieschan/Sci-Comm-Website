@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Curious — Science for Everyone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #2d4a2d;
+    --green-mid: #4a7c59;
+    --green-light: #7db88a;
+    --green-pale: #e8f0e9;
+    --cream: #faf8f2;
+    --cream-warm: #f2ece0;
+    --brown-warm: #5c4a32;
+    --text-dark: #1c2b1c;
+    --text-mid: #4a5a4a;
+    --text-muted: #7a8a7a;
+    --accent-gold: #b8860b;
+    --accent-rust: #8b4513;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250, 248, 242, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(74, 124, 89, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: var(--green-deep);
+    font-style: italic;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green-mid); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 60%, rgba(125, 184, 138, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 30%, rgba(74, 124, 89, 0.08) 0%, transparent 70%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,124,89,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,124,89,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    border: 1px solid var(--green-light);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--green-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--text-mid);
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-muted);
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--green-light);
+    margin-bottom: 2.5rem;
+    max-width: 520px;
+  }
+
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 0.75rem 1.75rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid var(--green-mid);
+    color: var(--green-mid);
+    padding: 0.75rem 1.75rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--green-pale); transform: translateY(-1px); }
+
+  .hero-deco {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--green-deep);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--green-mid); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream-warm); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .about-text p { color: var(--text-mid); margin-bottom: 1rem; }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.75rem;
+    background: white;
+    border: 1px solid rgba(74,124,89,0.25);
+    border-radius: 2rem;
+    color: var(--green-deep);
+  }
+
+  .about-aside {
+    background: white;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    border: 1px solid rgba(74,124,89,0.12);
+  }
+
+  .aside-quote {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--green-deep);
+    margin-bottom: 1rem;
+  }
+
+  .aside-attr {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SERIES ── */
+  #series { background: var(--cream); }
+
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .series-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(74,124,89,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .series-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(45,74,45,0.08);
+  }
+
+  .series-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .card-nature::before { background: linear-gradient(90deg, #4a7c59, #7db88a); }
+  .card-immuno::before { background: linear-gradient(90deg, #8b4513, #b8860b); }
+  .card-click::before { background: linear-gradient(90deg, #2d4a2d, #4a7c59); }
+  .card-ask::before { background: linear-gradient(90deg, #7db88a, #b8d4be); }
+  .card-paper::before { background: linear-gradient(90deg, #5c4a32, #8b4513); }
+  .card-tools::before { background: linear-gradient(90deg, #4a7c59, #2d4a2d); }
+
+  .series-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    filter: none;
+  }
+
+  .series-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .series-card p {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .series-badge {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    background: var(--green-pale);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+  }
+
+  /* ── FIND ME ── */
+  #platforms { background: var(--cream-warm); }
+
+  .platform-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .platform-card {
+    background: white;
+    border-radius: 0.9rem;
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(74,124,89,0.1);
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .platform-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--green-light);
+  }
+
+  .platform-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .platform-card strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    color: var(--green-deep);
+  }
+
+  .platform-card span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--green-deep); }
+  #contact .section-label { color: var(--green-light); }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-title em { color: var(--green-light); }
+
+  .contact-text {
+    color: rgba(250,248,242,0.75);
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .contact-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-btn-light {
+    background: var(--cream);
+    color: var(--green-deep);
+  }
+  .contact-btn-light:hover { background: white; }
+
+  .contact-btn-outline {
+    border: 1px solid rgba(125,184,138,0.5);
+    color: var(--green-light);
+  }
+  .contact-btn-outline:hover { border-color: var(--green-light); background: rgba(125,184,138,0.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a2e1a;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(250,248,242,0.35);
+  }
+
+  footer a { color: rgba(125,184,138,0.7); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-deco { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Still Curious</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#series">Series</a></li>
+    <li><a href="#platforms">Find Me</a></li>
+    <li><a href="#contact">Collaborate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Decorative DNA-ish SVG -->
+  <svg class="hero-deco" width="380" height="500" viewBox="0 0 380 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M190 0 C240 80 140 160 190 240 C240 320 140 400 190 500" stroke="#4a7c59" stroke-width="2" fill="none"/>
+    <path d="M190 0 C140 80 240 160 190 240 C140 320 240 400 190 500" stroke="#7db88a" stroke-width="2" fill="none"/>
+    <line x1="165" y1="60" x2="215" y2="60" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="145" y1="120" x2="235" y2="120" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="180" x2="225" y2="180" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="240" x2="225" y2="240" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="145" y1="300" x2="235" y2="300" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="165" y1="360" x2="215" y2="360" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <line x1="155" y1="420" x2="225" y2="420" stroke="#4a7c59" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="165" cy="60" r="4" fill="#4a7c59"/>
+    <circle cx="215" cy="60" r="4" fill="#7db88a"/>
+    <circle cx="145" cy="120" r="4" fill="#7db88a"/>
+    <circle cx="235" cy="120" r="4" fill="#4a7c59"/>
+    <circle cx="155" cy="180" r="4" fill="#4a7c59"/>
+    <circle cx="225" cy="180" r="4" fill="#7db88a"/>
+    <circle cx="155" cy="240" r="4" fill="#7db88a"/>
+    <circle cx="225" cy="240" r="4" fill="#4a7c59"/>
+    <circle cx="145" cy="300" r="4" fill="#4a7c59"/>
+    <circle cx="235" cy="300" r="4" fill="#7db88a"/>
+    <circle cx="165" cy="360" r="4" fill="#7db88a"/>
+    <circle cx="215" cy="360" r="4" fill="#4a7c59"/>
+    <circle cx="155" cy="420" r="4" fill="#4a7c59"/>
+    <circle cx="225" cy="420" r="4" fill="#7db88a"/>
+  </svg>
+
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Science Communication</span>
+    <h1>You don't need to be<br>a scientist to <em>love science.</em><br>You just forgot.</h1>
+    <p class="hero-sub">
+      A biotech scientist mid-rediscovery — exploring molecular biology, immunology, and the natural world. Not an expert talking down. A scientist learning out loud.
+    </p>
+    <p class="hero-quote">
+      "I'm not here to teach you science. I'm here to remind you that you already love it."
+    </p>
+    <div class="btn-row">
+      <a href="#series" class="btn-primary">Explore the series</a>
+      <a href="#about" class="btn-ghost">Who's behind this?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">About</p>
+    <h2 class="section-title">From the backyard<br>to the <em>biotech lab</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I spent 7 years as an Associate Scientist in molecular biology and immunology — engineering T cells, building cell lines, designing plasmids from scratch. Somewhere in there, the wonder got quiet.
+        </p>
+        <p>
+          A colleague once told me: "It seems like you hate science." That hit harder than I expected. This channel is what came next.
+        </p>
+        <p>
+          I'm also an EMT, a former Amazon rainforest science communicator, a data science student, and someone who once made it to a Delta Airlines face-to-face interview. I think entirely in analogies — naturally, unrehearsed. That's the whole thing.
+        </p>
+        <div class="about-tags">
+          <span class="tag">Molecular Biology</span>
+          <span class="tag">Immunology</span>
+          <span class="tag">EMT</span>
+          <span class="tag">Amazon Rainforest</span>
+          <span class="tag">Data Science @ BU</span>
+          <span class="tag">Spoken Mandarin</span>
+          <span class="tag">Voice Acting</span>
+          <span class="tag">Conservation Biology</span>
+        </div>
+      </div>
+      <div class="about-aside">
+        <p class="aside-quote">
+          "Day to day, molecular biology is mostly moving tiny amounts of clear liquid from one tube to another. But you designed this from scratch on a computer and you're bringing it to life. To anyone who came before us — that's witchcraft."
+        </p>
+        <p class="aside-attr">— on why lab burnout is real, and why wonder is worth fighting for</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERIES -->
+<section id="series">
+  <div class="section-inner">
+    <p class="section-label">Content</p>
+    <h2 class="section-title">The series</h2>
+    <div class="series-grid">
+
+      <div class="series-card card-nature">
+        <span class="series-icon">🌿</span>
+        <h3>Nature Figured It Out First</h3>
+        <p>Evolution invented everything before scientists did. CRISPR, PCR, GFP, antibiotic resistance — we borrowed all of it.</p>
+        <span class="series-badge">Flagship series</span>
+      </div>
+
+      <div class="series-card card-immuno">
+        <span class="series-icon">🛡️</span>
+        <h3>Immunology Is Wild</h3>
+        <p>Your immune system is a layered security nightmare with incredible PR. NK cells, cytokines, CAR-T, checkpoint inhibitors.</p>
+        <span class="series-badge">Standalone series</span>
+      </div>
+
+      <div class="series-card card-paper">
+        <span class="series-icon">📰</span>
+        <h3>Beyond The Headline</h3>
+        <p>Live paper walkthroughs. What the study actually found vs what the headline claimed. Learn to read primary sources.</p>
+        <span class="series-badge">Most unique</span>
+      </div>
+
+      <div class="series-card card-click">
+        <span class="series-icon">💡</span>
+        <h3>What Made It Click?</h3>
+        <p>My click moments. Your click moments. What confused you in science class and what finally made it make sense.</p>
+        <span class="series-badge">Community series</span>
+      </div>
+
+      <div class="series-card card-ask">
+        <span class="series-icon">🎤</span>
+        <h3>Ask A Scientist</h3>
+        <p>Real questions from real people. No such thing as a stupid one. Science myths you believed for years. Explain like I'm 5.</p>
+        <span class="series-badge">Audience-driven</span>
+      </div>
+
+      <div class="series-card card-tools">
+        <span class="series-icon">🔬</span>
+        <h3>Biology Tools</h3>
+        <p>Western blot, PCR, flow cytometry, CRISPR, ddPCR — technique explainers that become permanent reference resources.</p>
+        <span class="series-badge">Evergreen</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <div class="section-inner">
+    <p class="section-label">Find Me</p>
+    <h2 class="section-title">Where to <em>watch</em></h2>
+    <p style="color: var(--text-mid); max-width: 500px; margin-bottom: 0.5rem;">
+      Short-form lives on Instagram and TikTok. Deep dives — including live paper walkthroughs — are on YouTube.
+    </p>
+    <div class="platform-row">
+      <a href="#" class="platform-card">
+        <span class="platform-icon">📸</span>
+        <strong>Instagram</strong>
+        <span>@stillcurious · Start here</span>
+      </a>
+      <a href="#" class="platform-card">
+        <span class="platform-icon">🎵</span>
+        <strong>TikTok</strong>
+        <span>@stillcurious · Discovery</span>
+      </a>
+      <a href="#" class="platform-card">
+        <span class="platform-icon">▶️</span>
+        <strong>YouTube</strong>
+        <span>Deep dives & papers</span>
+      </a>
+      <a href="#" class="platform-card">
+        <span class="platform-icon">🌀</span>
+        <strong>Crashing Into Clarity</strong>
+        <span>Sandbox channel</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Work Together</p>
+    <h2 class="section-title">Let's <em>collaborate</em></h2>
+    <p class="contact-text">
+      Open to science communication partnerships, educational collaborations, speaking, and media. If you want to make science feel like it belongs to everyone — let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:hello@stillcurious.com" class="contact-btn contact-btn-light">Send an email</a>
+      <a href="#" class="contact-btn contact-btn-outline">DM on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Still Curious · Built with wonder · <a href="#">Privacy</a></p>
+</footer>
+
+</body>
+</html>
