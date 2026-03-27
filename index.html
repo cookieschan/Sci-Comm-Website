@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(250, 248, 242, 0.92);
+    background: var(--green-deep);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(74, 124, 89, 0.15);
   }
@@ -51,7 +51,7 @@
   .nav-logo {
     font-family: 'Lora', serif;
     font-size: 1.1rem;
-    color: var(--green-deep);
+    color: var(--cream);
     font-style: italic;
     text-decoration: none;
   }
@@ -59,12 +59,12 @@
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
     text-decoration: none;
-    color: var(--text-mid);
+    color: rgba(250, 248, 242, 0.75);
     font-size: 0.875rem;
     letter-spacing: 0.04em;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--green-mid); }
+  .nav-links a:hover { color: var(--green-light); }
 
   /* ── HERO ── */
   .hero {
@@ -514,9 +514,10 @@
 
   <div class="hero-inner">
     <span class="hero-eyebrow">Science Communication</span>
-    <h1>You don't need to be<br>a scientist to <em>love science.</em><br>[insert something here].</h1>
+    <h1>You don't need to be<br>a scientist to <em>love science.</em></h1>
     <p class="hero-sub">
-      A biotech scientist mid-rediscovery — exploring molecular biology, immunology, and the natural world. Not an expert talking down. A scientist learning out loud.
+You just need to remember what it feels like to be curious<br>
+...and be open to finding a little magic in it again. A biotech scientist mid-rediscovery — exploring molecular biology, immunology, and the natural world. Not an expert talking down. A scientist learning out loud.
     </p>
     <p class="hero-quote">
       [put quote here]
@@ -532,11 +533,16 @@
 <section id="about">
   <div class="section-inner">
     <p class="section-label">About</p>
-    <h2 class="section-title">From <em>biotech</em> to <br><em>[something else here]</em></h2>
+    <h2 class="section-title">From <em>biotech</em> to <br><em>burnout</em></h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          I spent 7 years as an Associate Scientist in molecular biology and immunology — engineering T cells, building cell lines, designing plasmids from scratch. Somewhere in there, the wonder got quiet.
+          I spent 7 years as an Associate Scientist in molecular biology and immunology
+          — engineering T cells, building cell lines, designing plasmids from scratch. 
+          Somewhere in there, the wonder got quiet. A biotech scientist mid-rediscovery, 
+          exploring molecular biology, immunology, and the natural world. Not an expert 
+          talking down. A scientist learning out loud — reconnecting with the wonder that 
+          made everything feel alive in the first place.
         </p>
         <p>
           A colleague once told me: "It seems like you hate science." That hit harder than I expected. This channel is what came next.
@@ -558,8 +564,9 @@
 
       </div>
       <div class="about-aside">
+        <img src="Photo.jpg" alt="A photo of me" style="width:100%;border-radius:0.8rem;margin-bottom:1.5rem;object-fit:cover;height:280px;">
         <p class="aside-quote">
-          [inspirational quote here]
+          [inspirational quote here/maybe photo of myself?]
         </p>
         <p class="aside-attr">— on why lab burnout is real, and why wonder is worth fighting for</p>
       </div>
@@ -643,9 +650,6 @@
   <div class="section-inner">
     <p class="section-label">Find Me</p>
     <h2 class="section-title">Where to <em>watch</em></h2>
-    <p style="color: var(--text-mid); max-width: 500px; margin-bottom: 0.5rem;">
-      Short-form lives on Instagram and TikTok. Deep dives are on YouTube.
-    </p>
     <div class="platform-row">
       <a href="https://www.instagram.com/sciencewithcookies" class="platform-card">
         <span class="platform-icon">📸</span>
